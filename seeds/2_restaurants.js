@@ -1,12 +1,12 @@
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
+  return knex('restaurants').del()
     .then(function () {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {name: 'Code Chrysalis', address: ''},
-        {name: 'WacArnolds', address: ''},
+      return knex('restaurants').insert([
+        {id: 1, name: 'Code Chrysalis', address: 'Near me?'},
+        {id: 2, name: 'WacArnolds', address: ''},
       ]);
     });
 };
