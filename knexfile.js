@@ -4,9 +4,9 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: process.env.PG_CONNECTION_STRING,
+    connection: 'postgres://postgres:reiji2924@localhost/menu_notes',
     migrations: {
-      tableName: 'db/knex_migrations'
+      tableName: '/migrations'
     }
   },
 
@@ -18,7 +18,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: ',/db/knex_migrations'
     }
   },
 
@@ -30,7 +30,7 @@ module.exports = {
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      tableName: './db/knex_migrations'
     }
   }
 

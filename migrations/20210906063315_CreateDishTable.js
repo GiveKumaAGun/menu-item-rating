@@ -1,10 +1,12 @@
 
 exports.up = function(knex) {
   return knex.schema.createTable("dishes", function(table) {
-    table.uuid("id");
+    table.increments("id").unique();
     table.string("name").notNullable();
-    table.uuid("restaurant_id").notNullable().references("id").inTable("restaurants").onDelete("CASCADE");
-  })
+    table.integer("restaurant_id").notNullable()
+    
+    table.foreign("restaurant_id").references("id").inTable("restaurants").onDelete("CASCADE");
+  });
 };
 
 exports.down = function(knex) {
