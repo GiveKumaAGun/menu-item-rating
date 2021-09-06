@@ -20,7 +20,7 @@ export function Counter() {
 
   const onClickHandler = async () => {
     const test = await axios.get("/hello")
-    console.log(test.data);
+    console.log(test.data)
   }
 
   return (
