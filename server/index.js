@@ -13,6 +13,7 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 app.get("/api/users/:username/", async (req, res) => {
+  console.log("hello")
   let data = await db.select().from("dish_reviews").fullOuterJoin("dishes", "dish_reviews.dish_id", "dishes.id").fullOuterJoin("restaurants", "dishes.restaurant_id", "restaurants.id").where({username: req.params.username})
   res.json(data);
 })
