@@ -21,10 +21,10 @@ export default function Dishes () {
 
   const details = (score, comment) => {
     return (
-      <p>
-        <p>Score: {score}</p>
-        <p>Comment: {comment}</p>
-      </p>
+      <div>
+        <div>Score: {score}</div>
+        <div>Comment: {comment}</div>
+      </div>
     )
   }
 
@@ -35,18 +35,26 @@ export default function Dishes () {
     <div>
       <button onClick={() => {console.log(restaurants.selected)}}>Test</button>
       <h1>{restaurants.selected.name}</h1>
+      <h4>{restaurants.selected.address}</h4>
       <List >
       {user.dishList.filter((dish) => dish.rest_id === restaurants.selected.id).map((dish) => (
-        <ListItem>
+        <ListItem key={`dish_${dish.id}`}>
           <ListItemAvatar >
             <Avatar>
               <Icon></Icon>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={dish.name} secondary={details(dish.score, dish.comment)} onClick={(event) => handleListItemClick(event, dish)}/>
+          <ListItemText 
+          primary={dish.name} 
+          secondary={`Score: ${dish.score}, Comment: ${dish.comment}`}  
+          onClick={(event) => handleListItemClick(event, dish)}
+          />
         </ListItem>
       ))}
+        <div>Review another item</div>
+        <div>Add an unlisted item</div>
       </List>
+
     </div>
   )
 
