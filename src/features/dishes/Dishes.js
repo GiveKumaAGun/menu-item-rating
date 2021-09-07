@@ -35,9 +35,10 @@ export default function Dishes () {
     <div>
       <button onClick={() => {console.log(restaurants.selected)}}>Test</button>
       <h1>{restaurants.selected.name}</h1>
+      <h4>{restaurants.selected.address}</h4>
       <List >
       {user.dishList.filter((dish) => dish.rest_id === restaurants.selected.id).map((dish) => (
-        <ListItem>
+        <ListItem key={`dish_${dish.id}`}>
           <ListItemAvatar >
             <Avatar>
               <Icon></Icon>
@@ -50,7 +51,10 @@ export default function Dishes () {
           />
         </ListItem>
       ))}
+        <div>Review another item</div>
+        <div>Add an unlisted item</div>
       </List>
+
     </div>
   )
 

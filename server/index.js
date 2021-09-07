@@ -21,6 +21,13 @@ app.get("/restaurants/", async (req, res) => {
   res.json(data)
 })
 
+app.post("/restaurants/", async (req, res) => {
+  console.log(req.query.name)
+  console.log(req.query.address)
+  const test = await db.insert({name: req.query.name, address: req.query.address}).into("restaurants")
+  res.json(test)
+})
+
 app.get("/restaurants/:rest_id/dishes", async (req, res) => {
   let data = await db.select().from("dishes").where({restaurant_id: req.params.rest_id})
   res.json(data)

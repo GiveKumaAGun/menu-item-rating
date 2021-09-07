@@ -2,13 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { unique } from "underscore";
+import { uniq } from "underscore";
 import { fetchUserInfo } from "../user/userSlice";
 
 export const fetchAllRestaurants = createAsyncThunk(
   'restaurants/fetchAllRestaurants',
   async () => {
     const response = await axios.get(`/restaurants`)
+    return response.data
+  }
+)
+
+export const postRestaurant = createAsyncThunk(
+  'restaurants/postRestaurant',
+  async (object) => {
+    console.log(object)
+    const response = await axios.post(`/restaurants/?name=${object.name}&address=${object.address}`)
     return response.data
   }
 )
@@ -22,7 +31,8 @@ export const restaurantsSlice = createSlice({
     getAllRestaurants: fetchAllRestaurants(),
     setSelectedRestaurant: (state, action) => {
       state.selected = action.payload
-    }
+    },
+    addRestaurant: postRestaurant(),
   },
   extraReducers: (builder) => {
     builder
@@ -30,21 +40,15 @@ export const restaurantsSlice = createSlice({
         state.all = action.payload;
       })
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
-        console.log(action)
-        console.log(state.all)
         const restaurants = action.payload.data.map((review) => {
-          return {
-            id: review.restaurant_id,
-            name: review.name,
-            address: review.address
-          }
+          return review.restaurant_id
         })
-        state.visited = unique(restaurants, false, (object) => object.id)
+        state.visited = uniq(restaurants)
       })
   }
 })
 
-export const { getAllRestaurants, setSelectedRestaurant } = restaurantsSlice.actions;
+export const { getAllRestaurants, setSelectedRestaurant, addRestaurant } = restaurantsSlice.actions;
 
 
 export default restaurantsSlice.reducer;
