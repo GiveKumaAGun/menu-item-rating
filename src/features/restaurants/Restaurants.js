@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TextField, List, ListItem, ListItemText } from '@material-ui/core';
+import { TextField, List, ListItem, ListItemText, Button } from '@material-ui/core';
 import { setSelectedRestaurant } from './restaurantsSlice';
 import { fetchRestaurantDishes } from '../dishes/dishesSlice';
 
@@ -17,14 +17,14 @@ export default function Restaurants () {
 
   return (
     <div>
-          <button onClick={() => {console.log(user)}}>Test</button>
+          <button onClick={() => {console.log(restaurants)}}>Test</button>
           <h1>Welcome {user.username}</h1>
           {user.reviewList.length > 0 ?
             <div>
               <TextField variant="outlined" placeholder="Search for a restaurant"/>
               <h2>Previously reviewed restaurants:</h2> 
               <List >
-                {user.restaurantList.map((restaurant) => (
+                {restaurants.visited.map((restaurant) => (
                   <ListItem key={`rest_${restaurant.id}`} onClick={(event) => handleListItemClick(event, restaurant)}>
                     <ListItemText primary={restaurant.name} secondary={restaurant.address}></ListItemText>
                   </ListItem>
@@ -32,7 +32,10 @@ export default function Restaurants () {
                 ))}
               </List>
               <h4>Add a new restaurant</h4>
-              <h5>Add an unlisted restaurant</h5>
+              <List>
+                {}
+              </List>
+              <Button variant="contained">Add an unlisted restaurant</Button>
             </div>
             : 
             <h2>No reviews found. Start by adding a restaurant!</h2>}

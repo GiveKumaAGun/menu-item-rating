@@ -21,10 +21,10 @@ export default function Dishes () {
 
   const details = (score, comment) => {
     return (
-      <p>
-        <p>Score: {score}</p>
-        <p>Comment: {comment}</p>
-      </p>
+      <div>
+        <div>Score: {score}</div>
+        <div>Comment: {comment}</div>
+      </div>
     )
   }
 
@@ -43,7 +43,11 @@ export default function Dishes () {
               <Icon></Icon>
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={dish.name} secondary={details(dish.score, dish.comment)} onClick={(event) => handleListItemClick(event, dish)}/>
+          <ListItemText 
+          primary={dish.name} 
+          secondary={`Score: ${dish.score}, Comment: ${dish.comment}`}  
+          onClick={(event) => handleListItemClick(event, dish)}
+          />
         </ListItem>
       ))}
       </List>
