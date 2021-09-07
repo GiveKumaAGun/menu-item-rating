@@ -1,6 +1,8 @@
 const connection = require('../knexfile')
 const db = require('knex')(connection) 
 
+require('dotenv').config();
+
 
 const express = require("express");
 const path = require("path")
