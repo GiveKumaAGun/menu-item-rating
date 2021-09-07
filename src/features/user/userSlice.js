@@ -5,7 +5,7 @@ import _ from "underscore";
 export const fetchUserInfo = createAsyncThunk(
   'user/fetchUserInfo',
   async (username) => {
-    const response = await axios.get(`/${username}`)
+    const response = await axios.get(`/users/${username}`)
     console.log(response.data)
     return {username, data: response.data}
   }
@@ -13,7 +13,7 @@ export const fetchUserInfo = createAsyncThunk(
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: { username: null, restaurantList: null, reviewList: null }, 
+  initialState: { username: null, restaurantList: null, dishList: null, reviewList: null }, 
   reducers: {
     getUserInfo: fetchUserInfo(),
 
@@ -23,9 +23,13 @@ export const userSlice = createSlice({
       .addCase(fetchUserInfo.fulfilled, (state, action) => {
         state.username = action.payload.username;
         const restaurants = action.payload.data.map((object) => {
-          return {id: object.restaurant_id, name: object.name}
+          return {id: object.restaurant_id, name: object.name, address: object.address}
         })
         state.restaurantList = _.uniq(restaurants, false, (object) => object.id)
+        const dishes = action.payload.data.map((object) => {
+          return {id: object.dish_id, name: object.dish, rest_id: object.restaurant_id, score: object.score, comment: object.comment}
+        })
+        state.dishList = dishes
         state.reviewList = action.payload.data
       })
   }
