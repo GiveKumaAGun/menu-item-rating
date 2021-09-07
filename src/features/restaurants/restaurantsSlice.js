@@ -16,7 +16,6 @@ export const restaurantsSlice = createSlice({
   reducers: {
     getAllRestaurants: fetchAllRestaurants(),
     setSelectedRestaurant: (state, action) => {
-      console.log(action.payload)
       state.selected = action.payload
     }
   },
