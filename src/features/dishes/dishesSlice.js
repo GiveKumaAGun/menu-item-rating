@@ -5,7 +5,7 @@ import axios from "axios";
 export const fetchRestaurantDishes = createAsyncThunk(
   'dishes/fetchRestaurantDishes',
   async (rest_id) => {
-    const response = await axios.get(`/restaurants/${rest_id}/dishes`)
+    const response = await axios.get(`/api/restaurants/${rest_id}/dishes`)
     return response.data
   }
 )

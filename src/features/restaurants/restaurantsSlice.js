@@ -8,7 +8,7 @@ import { fetchUserInfo } from "../user/userSlice";
 export const fetchAllRestaurants = createAsyncThunk(
   'restaurants/fetchAllRestaurants',
   async () => {
-    const response = await axios.get(`/restaurants`)
+    const response = await axios.get(`/api/restaurants`)
     return response.data
   }
 )
@@ -17,7 +17,7 @@ export const postRestaurant = createAsyncThunk(
   'restaurants/postRestaurant',
   async (object) => {
     console.log(object)
-    const response = await axios.post(`/restaurants/?name=${object.name}&address=${object.address}`)
+    const response = await axios.post(`/api/restaurants/?name=${object.name}&address=${object.address}`)
     return response.data
   }
 )

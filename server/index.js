@@ -3,7 +3,6 @@ const db = require('knex')(connection)
 
 require('dotenv').config();
 
-
 const express = require("express");
 const path = require("path")
 
@@ -13,24 +12,24 @@ const app = express();
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
-app.get("/users/:username/", async (req, res) => {
+app.get("/api/users/:username/", async (req, res) => {
   let data = await db.select().from("dish_reviews").fullOuterJoin("dishes", "dish_reviews.dish_id", "dishes.id").fullOuterJoin("restaurants", "dishes.restaurant_id", "restaurants.id").where({username: req.params.username})
   res.json(data);
 })
 
-app.get("/restaurants/", async (req, res) => {
+app.get("/api/restaurants/", async (req, res) => {
   let data = await db.select().from("restaurants");
   res.json(data)
 })
 
-app.post("/restaurants/", async (req, res) => {
+app.post("/api/restaurants/", async (req, res) => {
   console.log(req.query.name)
   console.log(req.query.address)
   const test = await db.insert({name: req.query.name, address: req.query.address}).into("restaurants")
   res.json(test)
 })
 
-app.get("/restaurants/:rest_id/dishes", async (req, res) => {
+app.get("/api/restaurants/:rest_id/dishes", async (req, res) => {
   let data = await db.select().from("dishes").where({restaurant_id: req.params.rest_id})
   res.json(data)
 })
