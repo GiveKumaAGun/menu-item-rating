@@ -5,7 +5,7 @@ import _ from "underscore";
 export const fetchUserInfo = createAsyncThunk(
   'user/fetchUserInfo',
   async (username) => {
-    const response = await axios.get(`/users/${username}`)
+    const response = await axios.get(`/api/users/${username}`)
     console.log(response.data)
     return {username, data: response.data}
   }
