@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TextField, List, ListItem, ListItemText, Button, Popover, Typography, makeStyles } from '@material-ui/core';
 import { setSelectedRestaurant, postRestaurant } from './restaurantsSlice';
 import { fetchRestaurantDishes } from '../dishes/dishesSlice';
+import Icon from '@material-ui/icons/AddCircle'
+
 
 export default function Restaurants () {
   const dispatch = useDispatch();
@@ -62,10 +64,12 @@ export default function Restaurants () {
                   
                 ))}
               </List>
+
               <h4>All Restaurants</h4>
               <List>
                 {restaurants.all.map((restaurant) => (
                   <ListItem key={`newRest_${restaurant.id}`} onClick={(event) => handleListItemClick(event, restaurant)}>
+                    <Icon style={{paddingRight: "1rem"}}/>
                     <ListItemText primary={restaurant.name} secondary={restaurant.address}></ListItemText>
                   </ListItem>
                 ))}
