@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TextField, List, ListItem, ListItemText, Button, Popover, Typography, makeStyles } from '@material-ui/core';
+import { TextField, List, ListItem, ListItemText, Button, Popover, Typography, makeStyles, Avatar, ListItemAvatar } from '@material-ui/core';
 import { setSelectedRestaurant, postRestaurant, fetchAllRestaurants } from './restaurantsSlice';
 import { fetchRestaurantDishes } from '../dishes/dishesSlice';
 import Icon from '@material-ui/icons/AddCircle'
+import Image from '@material-ui/icons/Image'
 
 
 export default function Restaurants () {
@@ -60,6 +61,11 @@ export default function Restaurants () {
               <List >
                 {user.restaurantList.map((restaurant) => (
                   <ListItem key={`rest_${restaurant.id}`} onClick={(event) => handleListItemClick(event, restaurant)}>
+                    <ListItemAvatar >
+                      <Avatar variant="square">
+                        <Image></Image>
+                      </Avatar>
+                    </ListItemAvatar>
                     <ListItemText primary={restaurant.name} secondary={restaurant.address}></ListItemText>
                   </ListItem>
                   
