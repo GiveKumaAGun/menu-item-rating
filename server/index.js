@@ -26,7 +26,8 @@ app.get("/api/restaurants/", async (req, res) => {
 app.post("/api/restaurants/", async (req, res) => {
   console.log(req.query.name)
   console.log(req.query.address)
-  const test = await db.insert({name: req.query.name, address: req.query.address}).into("restaurants")
+  const id = Math.floor(Math.random() * 2000000);
+  const test = await db.insert({id: id, name: req.query.name, address: req.query.address}).into("restaurants")
   res.json(test)
 })
 
