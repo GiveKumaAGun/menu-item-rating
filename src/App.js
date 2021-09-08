@@ -34,16 +34,21 @@ function App() {
     );
   } else if (restaurants.selected === null) {
     return (
-      <div className="App">
+      <div>
         <Header user={user} />
-        <Restaurants />
+        <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+          <Restaurants />
+        </div>
       </div>
+      
     )
   } else if (dishes.selected === null) {
     return (
-      <div className="App">
+      <div>
         <Header user={user} restaurant={restaurants} />
-        <Dishes />
+        <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+          <Dishes />
+        </div>
       </div>
     )
   } else {

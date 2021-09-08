@@ -3,13 +3,24 @@ import { useDispatch } from "react-redux"
 import { resetUser } from "./user/userSlice";
 import { resetRestaurant } from "./restaurants/restaurantsSlice";
 import { useSelector } from "react-redux";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  breadcrumb: {
+    paddingInline: "2rem",
+    paddingTop: "1rem"
+  }
+});
+
 
 export function Breadcrumb (props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.username)
   const restaurant = useSelector((state) => state.restaurants.selected)
+  const classes = useStyles();
 
   
+
 
   const unsetUser = async () => {
     await dispatch(resetUser())
@@ -25,12 +36,12 @@ export function Breadcrumb (props) {
   }
 
   return (
-    <div style={{justifyContent:"center", alignItems:"center"}}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit"  onClick={unsetUser}>
+    <div>
+      <Breadcrumbs aria-label="breadcrumb" className={classes.breadcrumb}>
+        <Link color="inherit"  onClick={unsetUser} >
           User
         </Link>
-        {user ? <Link color="inherit"  onClick={unsetRestaurant}>
+        {user ? <Link color={!restaurant ? "textPrimary" : "inherit"}  onClick={unsetRestaurant}>
           Restaurant
         </Link> : null}
         {user && restaurant ? <Link

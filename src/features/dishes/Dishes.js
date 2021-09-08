@@ -116,7 +116,7 @@ export default function Dishes () {
       {user.dishList.filter((dish) => dish.rest_id === restaurants.selected.id).map((dish) => (
         <ListItem key={`dish_${dish.id}`}>
           <ListItemAvatar >
-            <Avatar>
+            <Avatar variant="square">
               <Image></Image>
             </Avatar>
           </ListItemAvatar>
