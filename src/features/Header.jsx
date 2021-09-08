@@ -1,29 +1,46 @@
-import { Breadcrumbs, Link } from "@material-ui/core"
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import {useDispatch} from "react-redux"
+import { resetUser } from './user/userSlice';
+import { resetRestaurants } from './restaurants/restaurantsSlice';
+import { resetDishes } from './dishes/dishesSlice';
+import {Breadcrumb} from './Breadcrumb'
 
-export function Header () {
-  const handleClick = () => {
-    console.log('clicked')
-  }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
+
+export default function Header() {
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
-    <div>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Material-UI
-        </Link>
-        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
-          Core
-        </Link>
-        <Link
-          color="textPrimary"
-          href="/components/breadcrumbs/"
-          onClick={handleClick}
-          aria-current="page"
-        >
-          Breadcrumb
-        </Link>
-      </Breadcrumbs>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton> */}
+          <Typography variant="h6" className={classes.title}>
+            Test App Pls Ignore
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Breadcrumb />
     </div>
-  )
+  );
 }
-

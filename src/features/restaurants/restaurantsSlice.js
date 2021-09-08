@@ -9,6 +9,7 @@ export const fetchAllRestaurants = createAsyncThunk(
   'restaurants/fetchAllRestaurants',
   async () => {
     const response = await axios.get(`/api/restaurants`)
+    console.log(response.data)
     return response.data
   }
 )
@@ -33,6 +34,9 @@ export const restaurantsSlice = createSlice({
       state.selected = action.payload
     },
     addRestaurant: postRestaurant(),
+    resetRestaurant: (state) => {
+      state.selected = null
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -48,7 +52,7 @@ export const restaurantsSlice = createSlice({
   }
 })
 
-export const { getAllRestaurants, setSelectedRestaurant, addRestaurant } = restaurantsSlice.actions;
+export const { getAllRestaurants, setSelectedRestaurant, addRestaurant, resetRestaurant } = restaurantsSlice.actions;
 
 
 export default restaurantsSlice.reducer;
