@@ -16,6 +16,12 @@ export const userSlice = createSlice({
   initialState: { username: null, restaurantList: null, dishList: null, reviewList: null }, 
   reducers: {
     getUserInfo: fetchUserInfo(),
+    resetUser: (state) => {
+      state.username = null
+      state.restaurantList = null
+      state.dishList = null
+      state.reviewList = null
+    },
 
   },
   extraReducers: (builder) => {
@@ -35,7 +41,7 @@ export const userSlice = createSlice({
   }
 })
 
-export const { selectUser, getUserInfo } = userSlice.actions;
+export const { getUserInfo, resetUser } = userSlice.actions;
 
 
 export default userSlice.reducer;

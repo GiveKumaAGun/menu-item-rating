@@ -10,6 +10,15 @@ export const fetchRestaurantDishes = createAsyncThunk(
   }
 )
 
+export const postDish = createAsyncThunk(
+  'dishes/postDish',
+  async (object) => {
+    const response = await axios.post(`/api/restaurants/${object.rest_id}/dishes/?name=${object.name}`)
+    console.log(response)
+    return response.data
+  }
+)
+
 export const dishesSlice = createSlice({
   name: "dishes",
   initialState: { all: null, selected: null }, 
@@ -17,7 +26,12 @@ export const dishesSlice = createSlice({
     getRestaurantDishes: fetchRestaurantDishes(),
     setSelectedDish: (state, action) => {
       state.selected = action.payload
+    },
+    addDish: postDish(),
+    resetDishes: (state) => {
+      state.selected = null
     }
+
   },
   extraReducers: (builder) => {
     builder
@@ -27,7 +41,7 @@ export const dishesSlice = createSlice({
   }
 })
 
-export const { getRestaurantDishes, setSelectedDish } = dishesSlice.actions;
+export const { getRestaurantDishes, setSelectedDish, resetDishes } = dishesSlice.actions;
 
 
 export default dishesSlice.reducer;

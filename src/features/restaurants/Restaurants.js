@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField, List, ListItem, ListItemText, Button, Popover, Typography, makeStyles } from '@material-ui/core';
-import { setSelectedRestaurant, postRestaurant } from './restaurantsSlice';
+import { setSelectedRestaurant, postRestaurant, fetchAllRestaurants } from './restaurantsSlice';
 import { fetchRestaurantDishes } from '../dishes/dishesSlice';
 import Icon from '@material-ui/icons/AddCircle'
 
@@ -46,13 +46,14 @@ export default function Restaurants () {
     setAddress(event.target.value)
   }
 
-  const submit = () => {
-    dispatch(postRestaurant({name, address}))
+  const submit = async (event) => {
+    await dispatch(postRestaurant({name, address}))
+    await setAnchorEl(null);
+    await dispatch(fetchAllRestaurants());
   }
 
   return (
     <div>
-          <button onClick={() => {console.log(restaurants.visited)}}>Test</button>
           <h1>Welcome {user.username}</h1>
             <div>
               {user.reviewList.length !== 0 ? <h4>Previously reviewed restaurants</h4>  : null}
@@ -90,6 +91,7 @@ export default function Restaurants () {
                 }}
               >
                 <Typography className={classes.typography}>
+                  <h4>Add an unlisted restaurant</h4>
                   <TextField variant="outlined" placeholder="Name" required onChange={(event) => changeHandler(event, "name")}/>
                   <TextField variant="outlined" placeholder="Address" onChange={(event) => changeHandler(event, "address")}/>
                   <Button variant="contained" onClick={(event) => submit(event)}>Add Restaurant</Button>

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dishes from './features/dishes/Dishes'
 import { fetchAllRestaurants } from './features/restaurants/restaurantsSlice';
 import Reviews from './features/reviews/Reviews'
-import {Header} from './features/Header'
+import Header from './features/Header'
 
 
 
@@ -24,22 +24,25 @@ function App() {
 
   if (user.username === null) {
     return (
-      <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+      <div>
         <Header />
-        <UserLogin />
+        <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+          <UserLogin />
+        </div>
       </div>
+    
     );
   } else if (restaurants.selected === null) {
     return (
       <div className="App">
-        <Header />
+        <Header user={user} />
         <Restaurants />
       </div>
     )
   } else if (dishes.selected === null) {
     return (
       <div className="App">
-        <Header />
+        <Header user={user} restaurant={restaurants} />
         <Dishes />
       </div>
     )

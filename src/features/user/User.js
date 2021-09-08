@@ -22,7 +22,7 @@ export function UserLogin () {
     <div style={{display:"flex", flexDirection:"column", width: "80%", alignItems:"center", justifyContent:"center"}}>
       <h2>Username:</h2>
       <TextField variant="outlined" placeholder="Enter your username" onChange={onChangeHandler}/>
-      <Button variant="contained" onClick={() => fetchUserData()}>Login</Button>
+      <Button variant="contained" onClick={() => fetchUserData()}>Select User</Button>
     </div>
   )
 
