@@ -25,10 +25,8 @@ function App() {
   if (user.username === null) {
     return (
       <div>
-        <Header />
-        <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-          <UserLogin />
-        </div>
+              <iframe src="https://docs.google.com/document/d/1NhNv4DdTXERbkZfJJQUvFxcGYD62diFyuBfh1JDOLC4/edit?usp=sharing" width="100%" height="1000px"></iframe>
+
       </div>
     
     );
