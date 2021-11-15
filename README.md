@@ -13,6 +13,6 @@ Menu-Item-Rating is a web app for reviewing individual menu items of restaurants
 - Deployed on: Heroku
 
 ## Demo
-The demo is available at: https://test-app-please-ignore-prod.herokuapp.com/
+The demo is available at: https://test-app-please-ignore-dev.herokuapp.com/
 
 
