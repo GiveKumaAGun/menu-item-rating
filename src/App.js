@@ -55,7 +55,7 @@ function App() {
     return (
       <div className="App">
         <Header />
-        Hello
+        Test
       </div>
     )
   }
