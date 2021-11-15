@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { UserLogin } from "./features/user/User"
 import Restaurants from './features/restaurants/Restaurants'
 import { useDispatch, useSelector } from 'react-redux';
 import Dishes from './features/dishes/Dishes'
 import { fetchAllRestaurants } from './features/restaurants/restaurantsSlice';
-import Reviews from './features/reviews/Reviews'
 import Header from './features/Header'
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -25,10 +20,11 @@ function App() {
   if (user.username === null) {
     return (
       <div>
-              <iframe src="https://docs.google.com/document/d/1NhNv4DdTXERbkZfJJQUvFxcGYD62diFyuBfh1JDOLC4/edit?usp=sharing" width="100%" height="1000px"></iframe>
-
+        <Header />
+        <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+          <UserLogin />
+        </div>
       </div>
-    
     );
   } else if (restaurants.selected === null) {
     return (
@@ -53,7 +49,7 @@ function App() {
     return (
       <div className="App">
         <Header />
-        Hello
+        Test
       </div>
     )
   }

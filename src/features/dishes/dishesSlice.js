@@ -28,7 +28,7 @@ export const dishesSlice = createSlice({
       state.selected = action.payload
     },
     addDish: postDish(),
-    resetDishes: (state) => {
+    resetDish: (state) => {
       state.selected = null
     }
 
@@ -41,7 +41,7 @@ export const dishesSlice = createSlice({
   }
 })
 
-export const { getRestaurantDishes, setSelectedDish, resetDishes } = dishesSlice.actions;
+export const { getRestaurantDishes, setSelectedDish, resetDish } = dishesSlice.actions;
 
 
 export default dishesSlice.reducer;

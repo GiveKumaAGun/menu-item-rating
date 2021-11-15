@@ -2,6 +2,7 @@ import { Breadcrumbs, Link } from "@material-ui/core"
 import { useDispatch } from "react-redux"
 import { resetUser } from "./user/userSlice";
 import { resetRestaurant } from "./restaurants/restaurantsSlice";
+import { resetDish } from "./dishes/dishesSlice"
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -25,11 +26,12 @@ export function Breadcrumb (props) {
   const unsetUser = async () => {
     await dispatch(resetUser())
     await dispatch(resetRestaurant())
+    await dispatch(resetDish())
   }
   const unsetRestaurant = async () => {
     console.log('clicked')
     await dispatch(resetRestaurant())
-
+    await dispatch(resetDish())
   }
   const handleClick = () => {
     console.log('clicked')
